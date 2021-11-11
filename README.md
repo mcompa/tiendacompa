@@ -1,6 +1,6 @@
 # Tienda Compa
 
-Este proyecto es creado por Matias Compagnone para el curos de React Js de
+Este proyecto es creado por Matias Compagnone para el curso de React Js de
  [CODERHOUSE](https://www.coderhouse.com/) Comision 16995.
 
 ## Scripts Disponibles
