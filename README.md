@@ -3,6 +3,9 @@
 Este proyecto es creado por Matias Compagnone para el curos de React Js de
  [CODERHOUSE](https://www.coderhouse.com/) Comision 16995.
 
+Creado componente navbar. 
+Agregada dependencia bootstrap.
+
 ## Scripts Disponibles
 
 En la carpeta del proyecto se puede ejecutar:
@@ -42,7 +45,7 @@ Click en [React documentation](https://reactjs.org/) para ir a la documentacion 
 
 ## Badges
 
-![version](https://img.shields.io/static/v1?label=Version&message=0.1.0&color=green)
+![version](https://img.shields.io/static/v1?label=Version&message=0.1.3&color=green)
 ![ultimo commit](https://img.shields.io/github/last-commit/mcompa/tiendacompa)
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
