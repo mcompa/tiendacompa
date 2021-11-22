@@ -1,20 +1,18 @@
 import logo from './logo.png';
 import './App.css';
 import NavBar from './components/NavBar';
+import { CartWidget } from './components/CartWidget';
+import ItemListContainer from './containers/ItemListContainer';
 
 function App() {
 	return (
 		<div className="App">
-			<NavBar />
+			<NavBar>
+				<CartWidget cantidad="2"/>
+			</NavBar>
 			<header className="App-header">
+				<ItemListContainer greeting="Tienda Compa"/>
 				<img src={logo} className="App-logo" alt="logo" />
-				<p>Tienda Compa</p>
-				<p>
-					Modificado <code>src/App.js</code>.
-				</p>
-				<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-					Documentacion
-				</a>
 				<a className="App-link" href="https://github.com/mcompa/tiendacompa" target="_blank" rel="noopener noreferrer">
 					Repositorio
 				</a>
