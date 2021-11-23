@@ -18,7 +18,11 @@ function App() {
 			</NavBar>
 			<header className="App-header">
 				<ItemListContainer greeting="Tienda Compa">
-					<ItemCount title="titulo counter" stock={5} inicial={1} onAdd={Agregar} />
+					<ItemCount title="Pantalon Chino 42" stock={5} inicial={1} onAdd={Agregar} />
+					{/*
+					<ItemCount title="Remera lisa gris M" stock={0} inicial={2} onAdd={Agregar} />
+					<ItemCount title="Bermuda Verde Militar L" stock={15} inicial={1} onAdd={Agregar} />
+					*/}
 				</ItemListContainer>
 				<p></p>
 				<img src={logo} className="App-logo" alt="logo" />
