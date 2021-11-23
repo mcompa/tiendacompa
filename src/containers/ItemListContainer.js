@@ -1,10 +1,13 @@
 import React from 'react'
 
-export const ItemListContainer = ({greeting}) => {
+export const ItemListContainer = ({greeting, children}) => {
     return (
-        <h1>
-            {greeting}
-        </h1>
+        <>
+            <h1>
+                {greeting}
+            </h1>
+            {children}
+        </>
     )
 }
 
