@@ -1,6 +1,7 @@
 import React from "react"
+import { CartWidget } from './CartWidget';
 
-const NavBar = ({children}) => {
+const NavBar = () => {
 	return (
 		<nav className="navbar sticky-top navbar-dark bg-dark navbar-expand">
 			<a className="navbar-brand" href="/#">
@@ -20,7 +21,7 @@ const NavBar = ({children}) => {
 				</div>
 			</div>
 			<div className="navbar-text">
-				{children}
+				<CartWidget cantidad="2"/>
 			</div>
 		</nav>
 	)
