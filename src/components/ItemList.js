@@ -1,7 +1,7 @@
 import React from 'react'
-import { Item } from './Item'
+import Item from './Item'
 
-export const ItemList = ({ items }) => {
+const ItemList = ({ items }) => {
 	return (
 
 		<div className="card-group">
@@ -14,3 +14,5 @@ export const ItemList = ({ items }) => {
 
 	)
 }
+
+export default ItemList;

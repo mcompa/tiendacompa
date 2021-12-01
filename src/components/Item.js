@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Item = ({ datos }) => {
+const Item = ({ datos }) => {
 
 	const { titulo, descripcion, stock, imagen } = datos;
 	return (
@@ -17,3 +17,5 @@ export const Item = ({ datos }) => {
 		</div>
 	)
 }
+
+export default Item;

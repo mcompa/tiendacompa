@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-export const ItemCount = ({title, stock, inicial, onAdd}) => {
+const ItemCount = ({title, stock, inicial, onAdd}) => {
 
     const [cantidad, setcantidad] = useState(inicial);
     
@@ -38,3 +38,5 @@ export const ItemCount = ({title, stock, inicial, onAdd}) => {
         </div>
     )
 }
+
+export default ItemCount;

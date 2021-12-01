@@ -2,6 +2,7 @@ import logo from './logo.png';
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
+import ItemDetailContainer from './containers/ItemDetailContainer';
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
 			<NavBar />
 			<header className="App-header">
 				<ItemListContainer greeting="Tienda Compa" />
+				<ItemDetailContainer />
 				<p></p>
 				<img src={logo} className="App-logo" alt="logo" />
 				<a className="App-link" href="https://github.com/mcompa/tiendacompa" target="_blank" rel="noopener noreferrer">

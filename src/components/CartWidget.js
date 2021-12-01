@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CartWidget = ({cantidad}) => {
+const CartWidget = ({cantidad}) => {
     return (
         <a className="nav-item nav-link text-right" href="/#">
             <i className="material-icons">shopping_cart</i>
@@ -8,3 +8,5 @@ export const CartWidget = ({cantidad}) => {
         </a>
     )
 }
+
+export default CartWidget;
