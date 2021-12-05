@@ -2,7 +2,11 @@ import React from 'react'
 import ItemCount from '../components/ItemCount';
 
 const ItemDetail = ({ articulo }) => {
-	const { titulo, categoria, descripcion, descripcionLarga, precio, precioLista, stock, imagen, caracteristicas, galeria, financiacion } = articulo;
+	const { 
+		titulo, categoria, descripcion, descripcionLarga, 
+		precio, precioLista, stock, imagen, caracteristicas, 
+		galeria, financiacion 
+	} = articulo;
 
 	const Agregar = (cantidad) => {
 		console.log('Agregando ' + cantidad + ' unidades.');
@@ -17,14 +21,14 @@ const ItemDetail = ({ articulo }) => {
 					<div className="row">
 						<div className="col-lg-5 col-md-5 col-sm-6">
 							<div className="white-box text-center">
-								<img src={imagen} alt={titulo} className="img-responsive" />
+								<img src={imagen} alt={titulo} className="img-thumbnail" />
 							</div>
 							<div className="row">
 								{
 									galeria &&
 									galeria.map(it => {
 										return <div className="col-2" key={it}>
-											<img src={it} width="50" height="50" alt={titulo} className="img-responsive" />
+											<img src={it} width="50" height="50" alt={titulo} className="img-thumbnail" />
 										</div>
 									})
 								}
@@ -35,7 +39,7 @@ const ItemDetail = ({ articulo }) => {
 								<div className="col-12">
 									<h4 className="box-title mt-5">{descripcion}</h4>
 								</div>
-								<div className="col-lg-7 col-md-7 col-sm-6">
+								<div className="col-6">
 
 									<h2 className="mt-4">
 										<small className="text-muted" style={{ "textDecoration": "line-through", "fontSize": "1rem" }}> $ {precioLista}</small>
@@ -44,7 +48,7 @@ const ItemDetail = ({ articulo }) => {
 									</h2>
 									<ItemCount title={titulo} stock={stock} inicial={1} onAdd={Agregar} />
 								</div>
-								<div className="col-lg-5 col-md-5 col-sm-6">
+								<div className="col-6">
 									{financiacion &&
 										<h2 className="mt-4">
 											<small className="text-muted" style={{"fontSize": "1rem" }}> Financiación:</small>
