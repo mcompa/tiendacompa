@@ -57,11 +57,9 @@ const Data = [
 		talle: "",
 		imagen: 'https://www.casadelaudio.com/Image/0/500_500-187-SAM-498.png',
 		galeria: [
-			'https://www.casadelaudio.com/Image/0/500_500-187-SAM-498.png',
-			'https://www.casadelaudio.com/Image/0/500_501-187-SAM-498.png',
-			'https://www.casadelaudio.com/Image/0/500_502-187-SAM-498.png',
-			'https://www.casadelaudio.com/Image/0/500_503-187-SAM-498.png',
-			'https://www.casadelaudio.com/Image/0/500_504-187-SAM-498.png'
+			'https://www.casadelaudio.com/image/0/70_70-187-SAM-498.png',
+			'https://www.casadelaudio.com/image/0/70_70-187-SAM-498-11.png',
+			'https://www.casadelaudio.com/image/0/70_70-187-SAM-498-21.png'
 		]
 	},
 	{
@@ -90,11 +88,7 @@ const Data = [
 		talle: "",
 		imagen: 'https://www.casadelaudio.com/Image/0/500_500-330-ESC-211_01.png',
 		galeria: [
-			'https://www.casadelaudio.com/Image/0/500_500-330-ESC-211_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-330-ESC-211_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-330-ESC-211_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-330-ESC-211_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-330-ESC-211_01.png'
+			'https://www.casadelaudio.com/image/0/70_70-330-ESC-212_01.png'
 		]
 	},
 	{
@@ -135,11 +129,8 @@ const Data = [
 		talle: "",
 		imagen: 'https://www.casadelaudio.com/Image/0/500_500-252-RCA-202_01.png',
 		galeria: [
-			'https://www.casadelaudio.com/Image/0/500_500-252-RCA-202_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-252-RCA-202_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-252-RCA-202_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-252-RCA-202_01.png',
-			'https://www.casadelaudio.com/Image/0/500_500-252-RCA-202_01.png'
+			'https://www.casadelaudio.com/image/0/70_70-252-RCA-202_01.png',
+			'https://www.casadelaudio.com/image/0/70_70-252-RCA-202_02.png'
 		]
 	}
 ];
@@ -163,7 +154,7 @@ export const getProducts = () => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			resolve(Data)
-		}, 2000);
+		}, 1000);
 	})
 }
 
@@ -175,7 +166,19 @@ export const getItem = (sku) => {
 					return articulo.sku === sku
 				})
 			)
-		}, 2000);
+		}, 1000);
+	})
+}
+
+export const getProductsByCat = (id) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(
+				Data.filter((articulo) => { 
+					return articulo.categoriaId === id
+				})
+			)
+		}, 1000);
 	})
 }
 
@@ -183,6 +186,6 @@ export const getCategories = () => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			resolve(Categorias)
-		}, 2000);
+		}, 1000);
 	})
 }

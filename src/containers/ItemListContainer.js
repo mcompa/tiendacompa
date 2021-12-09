@@ -1,30 +1,39 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import ItemList from '../components/ItemList/ItemList';
-import { getProducts } from '../apis/local';
+import { getProducts, getProductsByCat } from '../apis/local';
+import { useParams } from 'react-router-dom';
 
-export const ItemListContainer = ({greeting}) => {
+export const ItemListContainer = ({ greeting }) => {
 
-    const [lstArt, setLstArt] = useState([]);
+	const [lstArt, setLstArt] = useState([]);
+	const { id } = useParams();
 
-    useEffect(() => {
-        getProducts().then(response => {
-            setLstArt(response);
-        }).catch( err => {
-            console.log('ups!');
-        });
-        
-    }, [])
+	useEffect(() => {
+		if (id) {
+			getProductsByCat(id).then(response => {
+				setLstArt(response);
+			}).catch(err => {
+				console.log('ups!');
+			});
+		} else {
+			getProducts().then(response => {
+				setLstArt(response);
+			}).catch(err => {
+				console.log('ups!');
+			});
+		}
+	}, [id])
 
-    return (
-        <div>
-            <h1>
-                {greeting}
-            </h1>
-            <div className="container">
-                <ItemList items={lstArt} />
-            </div>
-        </div>
-    )
+	return (
+		<div>
+			<h4>
+				{greeting}
+			</h4>
+			<div className="container">
+				<ItemList items={lstArt} />
+			</div>
+		</div>
+	)
 }
 
 export default ItemListContainer

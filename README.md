@@ -3,8 +3,14 @@
 Este proyecto es creado por Matias Compagnone para el curso de React Js de
  [CODERHOUSE](https://www.coderhouse.com/) Comision 16995.
 
-Creado componente navbar. 
-Agregada dependencia bootstrap.
+##Primera Entrega. 
+Entrega completa primera parte.
+
+##Dependencias y notas
+Agregada dependencia a bootstrap y react-router-dom.
+
+Dentro de la carpeta `apis` hay un archivo llamado local.js que simula el llamado a una api para obtener los productos y categorias.
+A futuro sera reemplazado por una api real.
 
 ## Scripts Disponibles
 
@@ -45,7 +51,7 @@ Click en [React documentation](https://reactjs.org/) para ir a la documentacion 
 
 ## Badges
 
-![version](https://img.shields.io/static/v1?label=Version&message=0.1.3&color=green)
+![version](https://img.shields.io/static/v1?label=Version&message=0.1.8&color=green)
 ![ultimo commit](https://img.shields.io/github/last-commit/mcompa/tiendacompa)
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 

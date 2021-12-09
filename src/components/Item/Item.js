@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Item.css'
 const Item = ({ datos }) => {
 
-	const { titulo, descripcion, stock, imagen } = datos;
+	const { sku, titulo, descripcion, stock, imagen } = datos;
 	return (
 		<div className="col-sm-12 col-md-6 col-lg-4">
 			<div className="card border-primary m-2">
@@ -10,7 +11,7 @@ const Item = ({ datos }) => {
 				<div className="card-body">
 					<h5 className="card-title">{titulo}</h5>
 					<p className="card-text">{descripcion}</p>
-					<a href="/#" className="btn btn-primary">Ver detalle</a>
+					<Link to={`/item/${sku}`} className="btn btn-primary">Ver detalle</Link>
 				</div>
 				<div className="card-footer text-muted">
 					<p >Stock Disponible: {stock} Unidades</p>

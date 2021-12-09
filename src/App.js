@@ -1,4 +1,5 @@
 import './App.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
@@ -7,9 +8,21 @@ function App() {
 
 	return (
 		<div className="App">
-			<NavBar />
-			<ItemListContainer greeting="Tienda Compa" />
-			<ItemDetailContainer />
+			<BrowserRouter>
+				<NavBar />
+				<Switch>
+					<Route exact path="/">
+						<ItemListContainer greeting="Tienda Compa" />
+					</Route>
+					<Route path="/category/:id">
+						<ItemListContainer />
+					</Route>
+					<Route path="/item/:artSku">
+						<ItemDetailContainer />
+					</Route>
+
+				</Switch>
+			</BrowserRouter>
 			<footer className="page-footer font-small bg-dark pt-4">
 				<div className="footer-copyright text-center py-3 text-white">
 					© 2021 CoderHouse - 
