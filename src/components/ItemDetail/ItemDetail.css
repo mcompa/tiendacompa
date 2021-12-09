@@ -1,0 +1,15 @@
+.text-muted, .table-product{
+    font-size: 1rem;
+}
+
+.precio-tachado{
+    text-decoration: line-through;
+}
+
+.text-sin-interes{
+    color: green;
+}
+
+.titulos-financiacion{
+    font-size: 1.75rem;
+}

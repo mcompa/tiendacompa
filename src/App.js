@@ -1,6 +1,5 @@
-import logo from './logo.png';
 import './App.css';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
 
@@ -9,15 +8,16 @@ function App() {
 	return (
 		<div className="App">
 			<NavBar />
-			<header className="App-header">
-				<ItemListContainer greeting="Tienda Compa" />
-				<ItemDetailContainer />
-				<p></p>
-				<img src={logo} className="App-logo" alt="logo" />
-				<a className="App-link" href="https://github.com/mcompa/tiendacompa" target="_blank" rel="noopener noreferrer">
-					Repositorio
-				</a>
-			</header>
+			<ItemListContainer greeting="Tienda Compa" />
+			<ItemDetailContainer />
+			<footer className="page-footer font-small bg-dark pt-4">
+				<div className="footer-copyright text-center py-3 text-white">
+					© 2021 CoderHouse - 
+					<a className="App-link" href="https://github.com/mcompa/tiendacompa" style={{marginLeft:"2px"}} target="_blank" rel="noopener noreferrer">
+						Repositorio
+					</a>
+				</div>
+			</footer>
 		</div>
 	);
 }

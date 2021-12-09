@@ -1,6 +1,6 @@
 import React from 'react'
-import ItemCount from '../components/ItemCount';
-
+import ItemCount from '../ItemCount/ItemCount';
+import './ItemDetail.css'
 const ItemDetail = ({ articulo }) => {
 	const { 
 		titulo, categoria, descripcion, descripcionLarga, 
@@ -13,7 +13,7 @@ const ItemDetail = ({ articulo }) => {
 	};
 
 	return (
-		<div className="container" style={{ color: "#000000" }}>
+		<div className="container mb-3 " >
 			<div className="card">
 				<div className="card-body">
 					<h3 className="card-title">{titulo}</h3>
@@ -42,8 +42,8 @@ const ItemDetail = ({ articulo }) => {
 								<div className="col-6">
 
 									<h2 className="mt-4">
-										<small className="text-muted" style={{ "textDecoration": "line-through", "fontSize": "1rem" }}> $ {precioLista}</small>
-										<p style={{ "fontSize": "1.75rem" }}>Precio en un pago:</p>
+										<small className="text-muted precio-tachado"> $ {precioLista}</small>
+										<p className="titulos-financiacion">Precio en un pago:</p>
 										<p>$ <strong>{precio}</strong> </p>
 									</h2>
 									<ItemCount title={titulo} stock={stock} inicial={1} onAdd={Agregar} />
@@ -51,11 +51,11 @@ const ItemDetail = ({ articulo }) => {
 								<div className="col-6">
 									{financiacion &&
 										<h2 className="mt-4">
-											<small className="text-muted" style={{"fontSize": "1rem" }}> Financiación:</small>
-											<p style={{ "fontSize": "1.75rem" }}>{financiacion.cantidadCuotas} cuotas de $ <strong>{financiacion.importeCuota}</strong></p>
+											<small className="text-muted"> Financiación:</small>
+											<p className="titulos-financiacion">{financiacion.cantidadCuotas} cuotas de $ <strong>{financiacion.importeCuota}</strong></p>
 											{
 												!financiacion.intereses &&
-												<p style={{ "color": "green" }}> SIN INTERES *</p>
+												<p className="text-sin-interes"> SIN INTERES *</p>
 											}
 										</h2>
 									}
@@ -72,13 +72,13 @@ const ItemDetail = ({ articulo }) => {
 						</div>
 					</div>
 					<div className="row">
-						<p className="text-muted" style={{"fontSize": "1rem" }}>{descripcionLarga}</p>
+						<p className="text-muted">{descripcionLarga}</p>
 					</div>
 					<div className="row">
 						<div className="col-12">
 							<h3 className="box-title mt-5">Caracteristicas</h3>
 							<div className="table-responsive">
-								<table className="table table-striped table-product" style={{"fontSize": "1rem" }}>
+								<table className="table table-striped table-product">
 									<tbody>
 
 										{

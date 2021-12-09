@@ -1,10 +1,10 @@
 import React from 'react'
-import Item from './Item'
+import Item from '../Item/Item'
 
 const ItemList = ({ items }) => {
 	return (
 
-		<div className="card-group">
+		<div className="row m-3">
 			{
 				items.map(it => {
 					return <Item key={it.id} datos={it} />

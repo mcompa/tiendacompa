@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import ItemDetail from '../components/ItemDetail';
+import ItemDetail from '../components/ItemDetail/ItemDetail';
 import { getItem } from '../apis/local';
 
 const ItemDetailContainer = () => {

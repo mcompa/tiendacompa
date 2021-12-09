@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import ItemList from '../components/ItemList';
+import ItemList from '../components/ItemList/ItemList';
 import { getProducts } from '../apis/local';
 
 export const ItemListContainer = ({greeting}) => {
@@ -16,12 +16,14 @@ export const ItemListContainer = ({greeting}) => {
     }, [])
 
     return (
-        <>
+        <div>
             <h1>
                 {greeting}
             </h1>
-            <ItemList items={lstArt} />
-        </>
+            <div className="container">
+                <ItemList items={lstArt} />
+            </div>
+        </div>
     )
 }
 
