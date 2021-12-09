@@ -55,7 +55,7 @@ const ItemDetail = ({ articulo }) => {
 											<p className="titulos-financiacion">{financiacion.cantidadCuotas} cuotas de $ <strong>{financiacion.importeCuota}</strong></p>
 											{
 												!financiacion.intereses &&
-												<p className="text-sin-interes"> SIN INTERES *</p>
+												<p className="text-success"> SIN INTERES *</p>
 											}
 										</h2>
 									}
@@ -64,9 +64,9 @@ const ItemDetail = ({ articulo }) => {
 							<div className="row">
 								<h3 className="box-title mt-5">Tips</h3>
 								<ul className="list-unstyled">
-									<li><i className="material-icons" style={{ color: "green" }}>done_outline</i> Garantia Extendida</li>
-									<li><i className="material-icons" style={{ color: "green" }}>done_outline</i> Envios Gratis a todo el pais (*)</li>
-									<li><i className="material-icons" style={{ color: "green" }}>done_outline</i> Atencion las 24 hs</li>
+									<li><i className="material-icons text-success">done_outline</i> Garantia Extendida</li>
+									<li><i className="material-icons text-success">done_outline</i> Envios Gratis a todo el pais (*)</li>
+									<li><i className="material-icons text-success">done_outline</i> Atencion las 24 hs</li>
 								</ul>
 							</div>
 						</div>

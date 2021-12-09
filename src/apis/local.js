@@ -8,7 +8,8 @@ const Data = [
 		stock: 2,
 		precio: 55999.0,
 		precioLista: 65999.0,
-		categoria: "Televisores",
+		categoria: "TV y Video",
+		categoriaId: 'tv-video',
 		financiacion: {
 			cantidadCuotas: 12,
 			importeCuota: 4667,
@@ -72,7 +73,8 @@ const Data = [
 		stock: 0,
 		precio: 20999.0,
 		precioLista: 20999.0,
-		categoria: "Televisores",
+		categoria: "Cocina",
+		categoriaId: 'cocina',
 		financiacion: {
 			cantidadCuotas: 12,
 			importeCuota: 4667,
@@ -104,7 +106,8 @@ const Data = [
 		stock: 38,
 		precio: 46999.0,
 		precioLista: 46999.0,
-		categoria: "Televisores",
+		categoria: "Refrigeración",
+		categoriaId: 'refrigeracion',
 		financiacion: {
 			cantidadCuotas: 12,
 			importeCuota: 1111,
@@ -141,6 +144,21 @@ const Data = [
 	}
 ];
 
+const Categorias = [
+	{
+		id: 'tv-video',
+		nombre: 'TV y Video'
+	},
+	{
+		id: 'refrigeracion',
+		nombre: 'Refrigeración'
+	},
+	{
+		id: 'cocina',
+		nombre: 'Cocina'
+	},
+];
+
 export const getProducts = () => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
@@ -157,6 +175,14 @@ export const getItem = (sku) => {
 					return articulo.sku === sku
 				})
 			)
+		}, 2000);
+	})
+}
+
+export const getCategories = () => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(Categorias)
 		}, 2000);
 	})
 }

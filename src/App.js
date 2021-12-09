@@ -13,7 +13,7 @@ function App() {
 			<footer className="page-footer font-small bg-dark pt-4">
 				<div className="footer-copyright text-center py-3 text-white">
 					© 2021 CoderHouse - 
-					<a className="App-link" href="https://github.com/mcompa/tiendacompa" style={{marginLeft:"2px"}} target="_blank" rel="noopener noreferrer">
+					<a className="App-link mx-2" href="https://github.com/mcompa/tiendacompa" target="_blank" rel="noopener noreferrer">
 						Repositorio
 					</a>
 				</div>
