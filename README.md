@@ -3,10 +3,10 @@
 Este proyecto es creado por Matias Compagnone para el curso de React Js de
  [CODERHOUSE](https://www.coderhouse.com/) Comision 16995.
 
-##Primera Entrega. 
+## Primera Entrega. 
 Entrega completa primera parte.
 
-##Dependencias y notas
+## Dependencias y notas
 Agregada dependencia a bootstrap y react-router-dom.
 
 Dentro de la carpeta `apis` hay un archivo llamado local.js que simula el llamado a una api para obtener los productos y categorias.
