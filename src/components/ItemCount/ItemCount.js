@@ -29,7 +29,7 @@ const ItemCount = ({title, stock, inicial, onAdd}) => {
                     </div>
                 </div>
 
-                <a href="/#" className={'btn btn-primary ' + (cantidad <= stock ? '' : 'disabled')} onClick={()=>{onAdd(cantidad)}}>
+                <a href="/#" className={'btn btn-primary ' + (cantidad <= stock ? '' : 'disabled')} onClick={(e)=>{ e.preventDefault(); onAdd(cantidad);}}>
                     <i className="material-icons">shopping_cart</i>
                     Agregar
                 </a>

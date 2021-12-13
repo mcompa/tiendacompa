@@ -1,15 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { Link } from 'react-router-dom';
 import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css'
 const ItemDetail = ({ articulo }) => {
 	const { 
 		titulo, categoria, descripcion, descripcionLarga, 
 		precio, precioLista, stock, imagen, caracteristicas, 
-		galeria, financiacion 
+		galeria, financiacion, sku 
 	} = articulo;
 
+	const [itemsCarrito, setItemsCarrito] = useState(0);
+
+
 	const Agregar = (cantidad) => {
-		console.log('Agregando ' + cantidad + ' unidades.');
+		console.log(`Agregando ${cantidad} unidades al carrito del producto sku=${sku}.`);
+		setItemsCarrito(cantidad);
 	};
 
 	return (
@@ -46,7 +51,9 @@ const ItemDetail = ({ articulo }) => {
 										<p className="titulos-financiacion">Precio en un pago:</p>
 										<p>$ <strong>{precio}</strong> </p>
 									</h2>
-									<ItemCount title={titulo} stock={stock} inicial={1} onAdd={Agregar} />
+									{
+										itemsCarrito === 0 ? <ItemCount title={titulo} stock={stock} inicial={1} onAdd={Agregar} /> : <Link to="/cart" className="btn btn-primary">Terminar Compra</Link>
+									}
 								</div>
 								<div className="col-6">
 									{financiacion &&

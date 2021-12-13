@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
+import CartDetailContainer from './containers/CartDetailContainer';
 
 function App() {
 
@@ -20,6 +21,9 @@ function App() {
 					<Route path="/item/:artSku">
 						<ItemDetailContainer />
 					</Route>
+					<Route path="/cart">
+						<CartDetailContainer />
+					</Route>					
 
 				</Switch>
 			</BrowserRouter>
