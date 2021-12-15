@@ -1,9 +1,10 @@
 import './App.css';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
 import CartDetailContainer from './containers/CartDetailContainer';
+import { NotFound } from './components/NotFound/NotFound';
 
 function App() {
 
@@ -11,21 +12,13 @@ function App() {
 		<div className="App">
 			<BrowserRouter>
 				<NavBar />
-				<Switch>
-					<Route exact path="/">
-						<ItemListContainer greeting="Tienda Compa" />
-					</Route>
-					<Route path="/category/:id">
-						<ItemListContainer />
-					</Route>
-					<Route path="/item/:artSku">
-						<ItemDetailContainer />
-					</Route>
-					<Route path="/cart">
-						<CartDetailContainer />
-					</Route>					
-
-				</Switch>
+				<Routes>
+					<Route exact path="/" element={<ItemListContainer greeting="Tienda Compa" />} />
+					<Route exact path="/category/:id" element={<ItemListContainer />} />
+					<Route exact path="/item/:artSku" element={<ItemDetailContainer />} />
+					<Route exact path="/cart" element={<CartDetailContainer />} />
+					<Route path="*" element={<NotFound />} />
+				</Routes>
 			</BrowserRouter>
 			<footer className="page-footer font-small bg-dark pt-4">
 				<div className="footer-copyright text-center py-3 text-white">

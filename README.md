@@ -7,9 +7,11 @@ Este proyecto es creado por Matias Compagnone para el curso de React Js de
 Entrega completa primera parte.
 
 ## Dependencias y notas
-Agregada dependencia a bootstrap y react-router-dom.
+Agregada dependencias
+    bootstrap
+    react-router-dom actualizada a v6
 
-Dentro de la carpeta `apis` hay un archivo llamado local.js que simula el llamado a una api para obtener los productos y categorias.
+Dentro de la carpeta `Services` hay un archivo llamado local.js que simula el llamado a una api para obtener los productos y categorias.
 A futuro sera reemplazado por una api real.
 
 ## Scripts Disponibles
