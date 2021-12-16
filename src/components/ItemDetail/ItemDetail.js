@@ -1,20 +1,24 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from '../ItemCount/ItemCount';
-import './ItemDetail.css'
+import './ItemDetail.css';
+import CartContext from '../../context/CartContext';
+
 const ItemDetail = ({ articulo }) => {
 	const { 
 		titulo, categoria, descripcion, descripcionLarga, 
 		precio, precioLista, stock, imagen, caracteristicas, 
-		galeria, financiacion, sku 
+		galeria, financiacion //, sku 
 	} = articulo;
 
 	const [itemsCarrito, setItemsCarrito] = useState(0);
 
+	const {addItem} = useContext(CartContext);
 
 	const Agregar = (cantidad) => {
-		console.log(`Agregando ${cantidad} unidades al carrito del producto sku=${sku}.`);
+		//console.log(`Agregando ${cantidad} unidades al carrito del producto sku=${sku}.`);
 		setItemsCarrito(cantidad);
+		addItem(articulo, cantidad);
 	};
 
 	return (

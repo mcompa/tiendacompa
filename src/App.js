@@ -5,20 +5,23 @@ import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
 import CartDetailContainer from './containers/CartDetailContainer';
 import { NotFound } from './components/NotFound/NotFound';
+import { CartContextProvider } from './context/CartContext';
 
 function App() {
 
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<NavBar />
-				<Routes>
-					<Route exact path="/" element={<ItemListContainer greeting="Tienda Compa" />} />
-					<Route exact path="/category/:id" element={<ItemListContainer />} />
-					<Route exact path="/item/:artSku" element={<ItemDetailContainer />} />
-					<Route exact path="/cart" element={<CartDetailContainer />} />
-					<Route path="*" element={<NotFound />} />
-				</Routes>
+				<CartContextProvider>
+					<NavBar />
+					<Routes>
+						<Route exact path="/" element={<ItemListContainer greeting="Tienda Compa" />} />
+						<Route exact path="/category/:id" element={<ItemListContainer />} />
+						<Route exact path="/item/:artSku" element={<ItemDetailContainer />} />
+						<Route exact path="/cart" element={<CartDetailContainer />} />
+						<Route path="*" element={<NotFound />} />
+					</Routes>					
+				</CartContextProvider>
 			</BrowserRouter>
 			<footer className="page-footer font-small bg-dark pt-4">
 				<div className="footer-copyright text-center py-3 text-white">

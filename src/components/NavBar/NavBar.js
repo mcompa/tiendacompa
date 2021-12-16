@@ -28,16 +28,16 @@ const NavBar = () => {
 			</button>
 			<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div className="navbar-nav">
-					<NavLink to="/" className='nav-item nav-link' activeClassName="active">Inicio</NavLink>
+					<NavLink to="/" className='nav-item nav-link'>Inicio</NavLink>
 					{
 						lstCat.map(c => {
-							return <NavLink to={`/category/${c.id}`} key={c.id} className='nav-item nav-link' activeClassName="active">{c.nombre}</NavLink>
+							return <NavLink to={`/category/${c.id}`} key={c.id} className='nav-item nav-link'>{c.nombre}</NavLink>
 						})
 					}
 				</div>
 			</div>
 			<div className="navbar-text">
-				<CartWidget cantidad="2" />
+				<CartWidget />
 			</div>
 		</nav>
 	)
