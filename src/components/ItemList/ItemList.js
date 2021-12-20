@@ -1,9 +1,8 @@
-import React from 'react'
-import Item from '../Item/Item'
+import React from 'react';
+import Item from '../Item/Item';
 
 const ItemList = ({ items }) => {
 	return (
-
 		<div className="row m-3">
 			{
 				items.map(it => {
@@ -11,8 +10,7 @@ const ItemList = ({ items }) => {
 				})
 			}
 		</div>
-
-	)
-}
+	);
+};
 
 export default ItemList;

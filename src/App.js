@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
-import CartDetailContainer from './containers/CartDetailContainer';
+import Cart from './components/Cart/Cart';
 import { NotFound } from './components/NotFound/NotFound';
 import { CartContextProvider } from './context/CartContext';
 
@@ -18,7 +18,7 @@ function App() {
 						<Route exact path="/" element={<ItemListContainer greeting="Tienda Compa" />} />
 						<Route exact path="/category/:id" element={<ItemListContainer />} />
 						<Route exact path="/item/:artSku" element={<ItemDetailContainer />} />
-						<Route exact path="/cart" element={<CartDetailContainer />} />
+						<Route exact path="/cart" element={<Cart />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>					
 				</CartContextProvider>

@@ -8,7 +8,11 @@ const CartWidget = () => {
     return (
         <Link className="nav-item nav-link text-right" to="/cart">
             <i className="material-icons">shopping_cart</i>
-            <span className="badge rounded-pill badge-notification bg-danger">{cantidadUnidades()}</span>
+            {
+                cantidadUnidades() > 0 ?
+                <span className="badge rounded-pill badge-notification bg-danger" style={{}}>{cantidadUnidades()}</span>
+                : ''
+            }
         </Link>
 
     )

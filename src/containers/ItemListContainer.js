@@ -1,23 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import ItemList from '../components/ItemList/ItemList';
 import { getProducts, getProductsByCat } from '../Services/local';
 import { useParams } from 'react-router-dom';
+import Loader from '../components/Loader/Loader';
 
 export const ItemListContainer = ({ greeting }) => {
-
+	const [isLoading, setIsLoading] = useState(true);
 	const [lstArt, setLstArt] = useState([]);
 	const { id } = useParams();
 
 	useEffect(() => {
+		setIsLoading(true);
 		if (id) {
 			getProductsByCat(id).then(response => {
 				setLstArt(response);
+				setIsLoading(false);
 			}).catch(err => {
 				console.log('ups!');
 			});
 		} else {
 			getProducts().then(response => {
 				setLstArt(response);
+				setIsLoading(false);
 			}).catch(err => {
 				console.log('ups!');
 			});
@@ -30,7 +34,11 @@ export const ItemListContainer = ({ greeting }) => {
 				{greeting}
 			</h4>
 			<div className="container">
-				<ItemList items={lstArt} />
+				{
+					isLoading ?
+					<Loader /> :
+					<ItemList items={lstArt} />
+				}
 			</div>
 		</div>
 	)

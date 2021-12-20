@@ -4,12 +4,15 @@ Este proyecto es creado por Matias Compagnone para el curso de React Js de
  [CODERHOUSE](https://www.coderhouse.com/) Comision 16995.
 
 ## Primera Entrega. 
-Entrega completa primera parte.
+De termina el detalle del carrito. Se agrega sweetalert2 para mostrar dialogos mas lindos
 
 ## Dependencias y notas
 Agregada dependencias
     bootstrap
     react-router-dom actualizada a v6
+    npm install --save sweetalert2 sweetalert2-react-content
+
+Agregado componente Loader.
 
 Dentro de la carpeta `Services` hay un archivo llamado local.js que simula el llamado a una api para obtener los productos y categorias.
 A futuro sera reemplazado por una api real.

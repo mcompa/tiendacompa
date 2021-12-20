@@ -34,13 +34,19 @@ export const CartContextProvider = ({children}) => {
         return productos.reduce((sum, articulo) => sum + articulo.cantidad, 0);
     };
 
+    const importeCarrito = () => {
+        return productos.reduce((sum, articulo) => sum + (articulo.cantidad * articulo.precio), 0);
+    };
+
     return (
         <Context.Provider value={{
             addItem,
             removeItem,
             clear,
             isInCart,
-            cantidadUnidades
+            cantidadUnidades, 
+            importeCarrito,
+            productos
         }}>
             {children}
         </Context.Provider>
