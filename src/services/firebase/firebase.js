@@ -59,7 +59,8 @@ const getDataItem = async (coleccion, id) => {
 
 
 export const getProducts = async () => {
-	return getData('products');
+	//return getData('products');
+	return getDataQ('products', where('titulo', '!=', ''));
 }
 
 export const getCategories = async () => {
