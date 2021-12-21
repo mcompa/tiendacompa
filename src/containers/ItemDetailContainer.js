@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ItemDetail from '../components/ItemDetail/ItemDetail';
-import { getItem } from '../Services/local';
+//import { getItem } from '../services/local/local';
+import { getItem } from '../services/firebase/firebase';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
 
@@ -11,11 +12,13 @@ const ItemDetailContainer = () => {
     const { artSku } = useParams();
 
     useEffect(() => {
+        setIsLoading(true);
         getItem(artSku).then(response => {
             setArt(response);
-            setIsLoading(false);
         }).catch(err => {
-            console.log('ups!');
+            console.log('Error obteniendo detalle',err);
+        }).finally(() => {
+            setIsLoading(false);
         });
 
     }, [artSku])

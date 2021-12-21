@@ -5,6 +5,7 @@ const ItemList = ({ items }) => {
 	return (
 		<div className="row m-3">
 			{
+				items &&
 				items.map(it => {
 					return <Item key={it.id} datos={it} />
 				})

@@ -137,15 +137,15 @@ const Data = [
 
 const Categorias = [
 	{
-		id: 'tv-video',
+		id2: 'tv-video',
 		nombre: 'TV y Video'
 	},
 	{
-		id: 'refrigeracion',
+		id2: 'refrigeracion',
 		nombre: 'Refrigeración'
 	},
 	{
-		id: 'cocina',
+		id2: 'cocina',
 		nombre: 'Cocina'
 	},
 ];
