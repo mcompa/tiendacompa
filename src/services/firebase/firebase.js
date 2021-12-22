@@ -1,16 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import config from "../../config/config";
 
 import { collection, getDocs, query, where, getDoc, doc, limit } from 'firebase/firestore';
 
 const firebaseConfig = {
-	apiKey: config.dbKey,
-	authDomain: "app-tiendacompa.firebaseapp.com",
-	projectId: "app-tiendacompa",
-	storageBucket: "app-tiendacompa.appspot.com",
-	messagingSenderId: "66422970016",
-	appId: "1:66422970016:web:4fcf38ec08c19c46121bc5"
+	apiKey: process.env.REACT_APP_apiKey,
+	authDomain: process.env.REACT_APP_authDomain,
+	projectId: process.env.REACT_APP_projectId,
+	storageBucket: process.env.REACT_APP_storageBucket,
+	messagingSenderId: process.env.REACT_APP_messagingSenderId,
+	appId: process.env.REACT_APP_appId
 };
 
 const app = initializeApp(firebaseConfig);
