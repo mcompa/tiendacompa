@@ -4,21 +4,21 @@ import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css';
 import CartContext from '../../context/CartContext';
 
-const ItemDetail = ({ articulo }) => {
+const ItemDetail = ({ article }) => {
 	const { 
 		titulo, categoria, descripcion, descripcionLarga, 
 		precio, precioLista, stock, imagen, caracteristicas, 
 		galeria, financiacion //, sku 
-	} = articulo;
+	} = article;
 
-	const [itemsCarrito, setItemsCarrito] = useState(0);
+	const [itemsInCart, setItemsInCart] = useState(0);
 
 	const {addItem} = useContext(CartContext);
 
-	const Agregar = (cantidad) => {
-		//console.log(`Agregando ${cantidad} unidades al carrito del producto sku=${sku}.`);
-		setItemsCarrito(cantidad);
-		addItem(articulo, cantidad);
+	const addUnits = (units) => {
+		//console.log(`Agregando ${units} unidades al carrito del producto sku=${sku}.`);
+		setItemsInCart(units);
+		addItem(article, units);
 	};
 
 	return (
@@ -56,11 +56,15 @@ const ItemDetail = ({ articulo }) => {
 										<p>$ <strong>{precio}</strong> </p>
 									</h2>
 									{
-										itemsCarrito === 0 ? <ItemCount title={titulo} stock={stock} inicial={1} onAdd={Agregar} /> : <Link to="/cart" className="btn btn-primary">Terminar Compra</Link>
+										itemsInCart === 0 ? 
+											<ItemCount title={titulo} stock={stock} inicial={1} onAdd={addUnits} /> 
+											: 
+											<Link to="/cart" className="btn btn-primary">Terminar Compra</Link>
 									}
 								</div>
 								<div className="col-6">
-									{financiacion &&
+									{
+										financiacion &&
 										<h2 className="mt-4">
 											<small className="text-muted"> Financiación:</small>
 											<p className="titulos-financiacion">{financiacion.cantidadCuotas} cuotas de $ <strong>{financiacion.importeCuota}</strong></p>

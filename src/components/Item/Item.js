@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './Item.css'
-const Item = ({ datos }) => {
+const Item = ({ itemdata }) => {
 
-	const { sku, titulo, descripcion, stock, imagen } = datos;
+	const { sku, titulo, descripcion, stock, imagen } = itemdata;
 	return (
 		<div className="col-sm-12 col-md-6 col-lg-4">
 			<div className="card border-primary m-2">

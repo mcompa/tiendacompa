@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-
+import { getFirestore, Timestamp, writeBatch } from "firebase/firestore";
 import { collection, getDocs, query, where, getDoc, doc, limit } from 'firebase/firestore';
+import { addDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_apiKey,
@@ -72,4 +72,50 @@ export const getItem = async (sku) => {
 
 export const getProductsByCat = async (id) => {
 	return getDataQ('products', where('categoriaId', '==', id));
+}
+
+export const sendOrder = async (buyer, itemsCart, amountCart) => {
+	const result = {
+		orderId: '',
+		outOfStock: []
+	}
+	const order = {
+		buyer: buyer,
+		items: itemsCart,
+		date: Timestamp.fromDate(new Date()),
+		total: amountCart()
+	};
+
+	const batch = writeBatch(db);
+	for (const element of order.items) {
+		
+		await getItem(element.sku).then( ({stock}) =>{
+			if (stock >= element.cantidad){
+				batch.update(doc(db,'products', element.sku), {
+					stock: stock - element.cantidad
+				});
+			}else{
+				result.outOfStock.push(element.descripcion);
+			}
+		});
+		
+	};
+	
+	if(result.outOfStock.length === 0){
+		let updateStockOk = await batch.commit().then(() => { 
+			return true;
+		}).catch(err => {
+			console.log('Error procesando stocks',err);
+			return false;
+		});
+
+		result.orderId = await addDoc(collection(db,"orders"), order).then(({id}) => {
+			return (updateStockOk ? id : '');
+		});
+
+		return result;
+	}
+
+	return result;
+
 }

@@ -4,49 +4,49 @@ const Context = React.createContext();
 
 export const CartContextProvider = ({children}) => {
 
-    const [productos, setProductos] = useState([]);
+    const [cartProducts, setCartProducts] = useState([]);
 
     const addItem = (art, cant) => {
         let existe = isInCart(art.sku);	
 		if (existe) {
 			existe.cantidad += cant;
-			setProductos([...productos]);
+			setCartProducts([...cartProducts]);
           } else {
-			setProductos([...productos, { ...art, cantidad:cant }]);
+			setCartProducts([...cartProducts, { ...art, cantidad:cant }]);
 		}
     };
 
     const removeItem = (sku) => {
-        let ixArticulo = productos.findIndex((articulo) => articulo.sku === sku);
-        productos.splice(ixArticulo , 1);        
-        setProductos([...productos]);
+        let ixArt = cartProducts.findIndex((art) => art.sku === sku);
+        cartProducts.splice(ixArt , 1);        
+        setCartProducts([...cartProducts]);
     };
 
-    const clear = () => {
-        setProductos([]);
+    const cartClear = () => {
+        setCartProducts([]);
     };
 
     const isInCart = (sku) => {
-        return productos.find((art) => art.sku === sku);
+        return cartProducts.find((art) => art.sku === sku);
     };
 
-    const cantidadUnidades = () => {
-        return productos.reduce((sum, articulo) => sum + articulo.cantidad, 0);
+    const unitsCount = () => {
+        return cartProducts.reduce((sum, art) => sum + art.cantidad, 0);
     };
 
-    const importeCarrito = () => {
-        return productos.reduce((sum, articulo) => sum + (articulo.cantidad * articulo.precio), 0);
+    const cartAmount = () => {
+        return cartProducts.reduce((sum, art) => sum + (art.cantidad * art.precio), 0);
     };
 
     return (
         <Context.Provider value={{
             addItem,
             removeItem,
-            clear,
+            cartClear,
             isInCart,
-            cantidadUnidades, 
-            importeCarrito,
-            productos
+            unitsCount, 
+            cartAmount,
+            cartProducts
         }}>
             {children}
         </Context.Provider>

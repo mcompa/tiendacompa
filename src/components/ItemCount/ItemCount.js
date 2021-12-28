@@ -2,12 +2,12 @@ import React, { useState } from "react"
 
 const ItemCount = ({title, stock, inicial, onAdd}) => {
 
-    const [cantidad, setcantidad] = useState(inicial);
+    const [amount, setAmount] = useState(inicial);
     
-    const cambiarCantidad = (Agregado) =>{
-        let cantTotal = cantidad + Agregado
-        if(cantTotal <= stock && cantTotal >0){
-            setcantidad(cantTotal);
+    const changeAmount = (Agregado) =>{
+        let amountTotal = amount + Agregado
+        if(amountTotal <= stock && amountTotal >0){
+            setAmount(amountTotal);
         }
     };
 
@@ -17,19 +17,19 @@ const ItemCount = ({title, stock, inicial, onAdd}) => {
                 <h5 className="card-title text-black">{title}</h5>
 
                 {
-                    (cantidad > stock) &&
+                    (amount > stock) &&
                     <h5 className="card-title text-danger">SIN STOCK</h5>
                 }
 
                 <div className="card-text">
                     <div className="input-group mb-3">
-                        <span className="material-icons input-group-text" style={{"cursor": "pointer"}} onClick={()=>{cambiarCantidad(-1)}}>expand_more</span>
-                        <input type="text" className="form-control" value={cantidad} readOnly />
-                        <span className="material-icons input-group-text" style={{"cursor": "pointer"}} onClick={()=>{cambiarCantidad(1)}}>expand_less</span>
+                        <span className="material-icons input-group-text" style={{"cursor": "pointer"}} onClick={()=>{changeAmount(-1)}}>expand_more</span>
+                        <input type="text" className="form-control" value={amount} readOnly />
+                        <span className="material-icons input-group-text" style={{"cursor": "pointer"}} onClick={()=>{changeAmount(1)}}>expand_less</span>
                     </div>
                 </div>
 
-                <a href="/#" className={'btn btn-primary ' + (cantidad <= stock ? '' : 'disabled')} onClick={(e)=>{ e.preventDefault(); onAdd(cantidad);}}>
+                <a href="/#" className={'btn btn-primary ' + (amount <= stock ? '' : 'disabled')} onClick={(e)=>{ e.preventDefault(); onAdd(amount);}}>
                     <i className="material-icons">shopping_cart</i>
                     Agregar
                 </a>

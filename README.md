@@ -5,10 +5,11 @@ Este proyecto es creado por Matias Compagnone para el curso de React Js de
 
 ## Entrega
 
-``` Desafio 12```
+``` Desafio 13```
 
-- Agregada api firebase.
-- Agregado archivo .env y .env.example para sacar las configuraciones a un archivo para tal fin.
+- Agregado manejo de stock al comprar.
+- Agregado componente BuyerData para recolectar datos del comprador.
+- Agregada orden al comprar y mensaje con numero de pedido.
 
 
 ## Dependencias

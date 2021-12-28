@@ -4,13 +4,13 @@ import CartContext from '../../context/CartContext';
 
 const CartWidget = () => {
 
-    const {cantidadUnidades} = useContext(CartContext);
+    const {unitsCount} = useContext(CartContext);
     return (
         <Link className="nav-item nav-link text-right" to="/cart">
             <i className="material-icons">shopping_cart</i>
             {
-                cantidadUnidades() > 0 ?
-                <span className="badge rounded-pill badge-notification bg-danger" style={{}}>{cantidadUnidades()}</span>
+                unitsCount() > 0 ?
+                <span className="badge rounded-pill badge-notification bg-danger" style={{}}>{unitsCount()}</span>
                 : ''
             }
         </Link>

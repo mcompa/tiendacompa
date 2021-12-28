@@ -1,49 +1,110 @@
-import React, {useContext} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate  } from 'react-router-dom';
 import CartContext from '../../context/CartContext';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import BuyerData from '../BuyerData/BuyerData';
+import Loader from '../Loader/Loader';
+import { sendOrder } from '../../services/firebase/firebase';
 
 export const Cart = () => {
-	const {productos, cantidadUnidades, importeCarrito, removeItem, clear} = useContext(CartContext);
+	const { cartProducts, unitsCount, cartAmount, removeItem, cartClear } = useContext(CartContext);
+	
 	const MySwal = withReactContent(Swal);
+	const navigate = useNavigate();
+	
+	const [editBuyerData, setEditBuyerData] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [buyer, setBuyer] = useState({
+		name: '',
+		lastName: '',
+		mail: '',
+		phone: '',
+		address: '',
+		comments: ''
+	});
 
-	const handleBorrarCarrito = () => {
+	const handleClearCart = () => {
 		MySwal.fire({
-			title: 'El carrito se va a vaciar. \n¿Continuamos?',
+			title: 'Vas a cancelar la compra y descartar los productos del carrito. \n¿Continuamos?',
 			showCancelButton: true,
 			confirmButtonText: 'Si',
 			cancelButtonText: 'No',
-		  }).then((result) => {
+		}).then((result) => {
 			if (result.isConfirmed) {
-				clear();
-				MySwal.fire('El carrito fue vaciado!', '', 'success')
+				cartClear();
+				MySwal.fire('La compra fue cancelada!', '', 'success')
 			}
-		  });
+		});
 	};
 
-	const handleQuitarItem = (sku, desc) => {
+	const handleRemoveItem = (sku, desc) => {
 		MySwal.fire({
 			title: `Se va a quitar ${desc}. \n¿Continuamos?`,
 			showCancelButton: true,
 			confirmButtonText: 'Si',
 			cancelButtonText: 'No',
-		  }).then((result) => {
+		}).then((result) => {
 			if (result.isConfirmed) {
 				removeItem(sku);
 			}
-		  });
+		});
+	};
+
+	const handleConfirmOrder = () => {
+		setIsLoading(true);
+		sendOrder(buyer, cartProducts, cartAmount).then((orderResult) => {
+			if(orderResult.orderId!==''){
+				MySwal.fire(
+					'La compra esta siendo procesada', 
+					`Podrás hacer el seguimiento de tu orden desde la seccion 
+					<em>Mis Compras</em>
+					<br />
+					Tu número de pedido es el <strong>${orderResult.orderId}</strong>
+					`, 
+					'success'
+				).then(() => {
+					cartClear();
+					navigate('/');
+				});
+			}else{
+				MySwal.fire(
+					'La compra fue cancelada!', 
+					`Los siguientes productos no cuentan con stock suficiente: <br>
+						${orderResult.outOfStock.join("<br>")}
+					<br />
+					Volve a realizar la compra.
+					`, 
+					'error'
+				).then( () => {
+					cartClear();
+					navigate('/');
+				});
+			}
+		}).catch(err => {
+			console.log('Error enviando orden',err);
+		}).finally(() => {
+			setIsLoading(false);
+		});
+	};
+
+	const handleDatosPersonales = () => {
+		setEditBuyerData(!editBuyerData);
+	};
+
+	const saveBuyerData = (buyerData) => {
+		setBuyer(buyerData);
+		setEditBuyerData(false);
 	};
 
 
-	if(cantidadUnidades() < 1){
+	if (unitsCount() < 1) {
 		return (
 			<div className='m-5'>
 				<h3>No tenes items en el carrito, pero podes empezar a comprar alguna de las ofertas <Link to="/">aqui</Link> </h3>
 			</div>
 		);
 	}
-
 
 	return (
 		<div className='m-5'>
@@ -59,8 +120,8 @@ export const Cart = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{		
-						productos.map( prod =>{
+					{
+						cartProducts.map(prod => {
 							return <tr key={prod.sku}>
 								<th scope="row">
 									<img src={prod.imagen} width="50" height="50" alt={prod.titulo} className="img-thumbnail" />
@@ -70,9 +131,11 @@ export const Cart = () => {
 								<td valign='middle'>$ {prod.precio}</td>
 								<td valign='middle'>$ {prod.cantidad * prod.precio}</td>
 								<td valign='middle'>
-									<span className="material-icons" style={{"cursor": "pointer"}} title='Quitar este item del carrito' 
-										onClick={(e)=>{ e.preventDefault(); handleQuitarItem(prod.sku, prod.descripcion);}}
-									>delete_forever</span>
+									<span className="material-icons" style={{ "cursor": "pointer" }}
+										title='Quitar este item del carrito'
+										onClick={(e) => { e.preventDefault(); handleRemoveItem(prod.sku, prod.descripcion); }}>
+										delete_forever
+									</span>
 								</td>
 							</tr>
 						})
@@ -82,14 +145,31 @@ export const Cart = () => {
 
 			<hr />
 			<div className='row'>
-				<div className='col-4'>Items en el Carrito: {cantidadUnidades()}</div>
-				<div className='col-4'>Importe total del Carrito: $ {importeCarrito()}</div>
+				<div className='col-sm-6 col-lg-2'>Items en el Carrito: {unitsCount()}</div>
+				<div className='col-sm-6 col-lg-2'><strong>Total: $ {cartAmount()}</strong></div>
+			</div>
+			<div className='row'>
 				<div className='col-4'>
-					<a href="/#" title='Vaciar carrito' onClick={(e)=>{ e.preventDefault(); handleBorrarCarrito();}}>
-						Vaciar Carrito <span className="material-icons danger">remove_shopping_cart</span>
+					<a href="/#" className='btn btn-info' title='Completar datos Personales' onClick={(e) => { e.preventDefault(); handleDatosPersonales(); }}>
+						Datos Personales
+						<span className="material-icons ">perm_contact_calendar</span>
 					</a>
 				</div>
+				<div className='col-4'>
+					<a href="/#" className='btn btn-danger' title='Cancelar Compra' onClick={(e) => { e.preventDefault(); handleClearCart(); }}>
+						Cancelar Compra
+						<span className="material-icons ">remove_shopping_cart</span>
+					</a>
+				</div>
+				<div className='col-4'>
+					<button className='btn btn-success' disabled={buyer.name===''} title='Confirmar Compra' onClick={(e) => { e.preventDefault(); handleConfirmOrder(); }}>
+						Confirmar Compra
+						<span className="material-icons ">shopping_cart_checkout</span>
+					</button>
+				</div>
 			</div>
+			<BuyerData buyerValues={buyer} editMode={editBuyerData} saveBuyer={saveBuyerData}></BuyerData>
+			{ isLoading && <Loader /> }
 		</div>
 	);
 };

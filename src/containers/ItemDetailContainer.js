@@ -27,7 +27,7 @@ const ItemDetailContainer = () => {
 
         isLoading ?
             <Loader /> :
-            <ItemDetail articulo={Art} />
+            <ItemDetail article={Art} />
 
     )
 }
