@@ -3,15 +3,32 @@ import React, { useState } from 'react';
 const BuyerData = ({ buyerValues, editMode, saveBuyer }) => {
 
 	const [formData, setFormData] = useState(buyerValues);
+	const [msgErrorDatos, setMsgErrorDatos] = useState('');
+	
 	
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+		console.log(formData);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		//console.log(formData);
-		saveBuyer(formData);
+		let mensajes = '';
+		
+		if(formData.name.length < 3){
+			mensajes +=' * Tenes que completar un nombre.';
+		}
+		
+		if( (formData.mail !== formData.remail) || formData.mail.length < 10){
+			mensajes += ' * El mail debe ser ingresado correctamente ambas veces.';
+		}
+
+		if(mensajes.length > 0){
+			setMsgErrorDatos(mensajes);
+		}else{
+			saveBuyer(formData);
+		}
+
 	};
 
 	return (
@@ -28,6 +45,14 @@ const BuyerData = ({ buyerValues, editMode, saveBuyer }) => {
 				<label className="form-label" htmlFor="mail">Email</label>
 				<input type="email" className="form-control" disabled={!editMode} name='mail' value={formData.mail} onChange={handleChange} id="mail" maxLength="150" placeholder="jperez@gmail.com" />
 			</div>
+			{
+				editMode && 
+			
+				<div className="col-md-6 col-sm-12">
+					<label className="form-label" htmlFor="remail">Reingresar Email</label>
+					<input type="email" className="form-control" name='remail' onChange={handleChange} id="remail" maxLength="150" placeholder="jperez@gmail.com" />
+				</div>
+			}
 			<div className="col-md-6 col-sm-12">
 				<label className="form-label" htmlFor="phone">Teléfono</label>
 				<input type="text" className="form-control" disabled={!editMode} name='phone' value={formData.phone} onChange={handleChange} id="phone" maxLength="20" placeholder="1234-5678" />
@@ -43,7 +68,9 @@ const BuyerData = ({ buyerValues, editMode, saveBuyer }) => {
 			{ editMode && 
 				<div className="col-12">
 					<button type="submit" className="btn btn-primary" onClick={handleSubmit}>Guardar</button>
+					<span className='m-3 text-danger'>{msgErrorDatos}</span>
 				</div>
+				
 			}
 		</form>
 	)

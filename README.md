@@ -5,32 +5,40 @@ Este proyecto es creado por Matias Compagnone para el curso de React Js de
 
 ## Entrega
 
-``` Desafio 13```
+``` Desafio: Entrega Final```
 
 - Agregado manejo de stock al comprar.
 - Agregado componente BuyerData para recolectar datos del comprador.
 - Agregada orden al comprar y mensaje con numero de pedido.
 
 
-## Dependencias
+## Creación y Dependencias
+
+- Creacion de la aplicación usando [create-react-app](https://github.com/facebook/create-react-app)\
+    ```bash
+        npx create-react-app nombre-aplicacion
+    ```
 
 Agregadas las siguientes dependencias:
 
-- bootstrap 
-    ```bash
-        npm install --save bootstrap
-    ```
-- react router dom (actualizada a v6)
+- [react router dom](https://reactrouter.com/docs/en/v6/getting-started/overview)  (actualizada a v6)
     ```bash
         npm install react-router-dom
     ```
-- sweetalert2
-    ```bash
-        npm install --save sweetalert2 sweetalert2-react-content
-    ```
-- firebase.
+- [firebase](https://firebase.google.com/docs/web/setup?hl=es) 
     ```bash
         npm install firebase
+    ```
+- [bootstrap](https://getbootstrap.com/) \
+    Se agrega para utilizar el sistema de grid y varios estilos. No es que no se pueda hacer a mano, pero es una 
+    libreria muy conocida y utilizada que simplifica bastante la UI. 
+    ```bash
+        npm install --save bootstrap
+    ```
+- [sweetalert2](https://github.com/sweetalert2/sweetalert2-react-content)  \
+    Genera unos dialogos muy convenientes y esteticamente agradables para presentar cierta información.
+    ```bash
+        npm install --save sweetalert2 sweetalert2-react-content
     ```
 
 ## Variables de Entorno
@@ -95,7 +103,7 @@ Click en [React documentation](https://reactjs.org/) para ir a la documentacion 
 
 ## Badges
 
-![version](https://img.shields.io/static/v1?label=Version&message=0.1.12&color=green)
+![version](https://img.shields.io/static/v1?label=Version&message=0.1.14&color=green)
 
 ![ultimo commit](https://img.shields.io/github/last-commit/mcompa/tiendacompa)
 

@@ -21,6 +21,21 @@ const ItemDetail = ({ article }) => {
 		addItem(article, units);
 	};
 
+	if(!titulo){
+		return (
+			<div className="container m-3 " >
+				<div className="card">
+					<div className="card-body">
+						<h3 className="card-title">Producto no encontrado :(</h3>
+						<h6 className="card-subtitle">
+							El producto que intentas ver no existe, pero podes comprar alguna de las ofertas haciendo click <Link to="/">aqui</Link>
+						</h6>
+					</div>
+				</div>
+			</div>
+		)
+	}
+
 	return (
 		<div className="container mb-3 " >
 			<div className="card">

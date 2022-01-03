@@ -83,6 +83,7 @@ export const sendOrder = async (buyer, itemsCart, amountCart) => {
 		buyer: buyer,
 		items: itemsCart,
 		date: Timestamp.fromDate(new Date()),
+		status: 'generada',
 		total: amountCart()
 	};
 

@@ -162,8 +162,8 @@ export const Cart = () => {
 					</a>
 				</div>
 				<div className='col-4'>
-					<button className='btn btn-success' disabled={buyer.name===''} title='Confirmar Compra' onClick={(e) => { e.preventDefault(); handleConfirmOrder(); }}>
-						Confirmar Compra
+					<button className='btn btn-success' disabled={buyer.name===''} title='Realizar Compra' onClick={(e) => { e.preventDefault(); handleConfirmOrder(); }}>
+						Realizar Compra
 						<span className="material-icons ">shopping_cart_checkout</span>
 					</button>
 				</div>

@@ -44,6 +44,9 @@ const NavBar = () => {
 				</div>
 			</div>
 			<div className="navbar-text">
+				<NavLink to="/" className='nav-item nav-link'>ord</NavLink>
+			</div>
+			<div className="navbar-text">
 				<CartWidget />
 			</div>
 		</nav>
