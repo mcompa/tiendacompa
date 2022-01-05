@@ -103,7 +103,7 @@ La estructura es como la que se muestra a continuacion:
 La otra coleccion es `categories` que contendra las opciones de categorias del menu. \
 La estructura es como la que se muestra a continuacion:
 
-    ```bash
+    ```
         [
             {
                 "id2": "nombre de la categoria pero en formato url-friendly",
