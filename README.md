@@ -66,7 +66,7 @@ Para el funcionamiento se necesitan dos colecciones en firebase.
 La primera es `products` que contiene un array de productos con sus caracteristicas, stock, detalles y fotos. \
 La estructura es como la que se muestra a continuacion:
 
-    ```javascript
+    ```bash
         [
             {
                 "id": "codigo-de-producto",
@@ -103,7 +103,7 @@ La estructura es como la que se muestra a continuacion:
 La otra coleccion es `categories` que contendra las opciones de categorias del menu. \
 La estructura es como la que se muestra a continuacion:
 
-    ```javascript
+    ```bash
         [
             {
                 "id2": "nombre de la categoria pero en formato url-friendly",
