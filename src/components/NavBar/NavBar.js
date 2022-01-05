@@ -1,9 +1,10 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-//import { getCategories } from '../../services/local/local';
 import { getCategories } from '../../services/firebase/firebase';
 import CartWidget from '../CartWidget/CartWidget';
 import Loader from "../Loader/Loader";
+import { handleError } from "../../services/tools/tools";
+
 const NavBar = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [lstCat, setLstCat] = useState([]);
@@ -13,13 +14,12 @@ const NavBar = () => {
 		getCategories().then(response => {
 			setLstCat(response);
 		}).catch(err => {
-			console.log('Error obteniendo Categorias:', err);
+			handleError('Error obteniendo Categorias:', err);
 		}).finally(() => {
 			setIsLoading(false);
 		});
 
-	}, [])
-
+	}, []);
 
 	return (
 		<nav className="navbar sticky-top navbar-dark bg-dark navbar-expand">
@@ -36,15 +36,15 @@ const NavBar = () => {
 
 					{
 						isLoading ?
-						<Loader /> :
-						lstCat.map(c => {
-							return <NavLink to={`/category/${c.id2}`} key={c.id} className='nav-item nav-link'>{c.nombre}</NavLink>
-						})
+							<Loader /> :
+							lstCat.map(c => {
+								return <NavLink to={`/category/${c.id2}`} key={c.id} className='nav-item nav-link'>{c.nombre}</NavLink>
+							})
 					}
 				</div>
 			</div>
 			<div className="navbar-text">
-				<NavLink to="/" className='nav-item nav-link'>ord</NavLink>
+				<NavLink to="/orders" className='nav-item nav-link'>Mis Compras</NavLink>
 			</div>
 			<div className="navbar-text">
 				<CartWidget />

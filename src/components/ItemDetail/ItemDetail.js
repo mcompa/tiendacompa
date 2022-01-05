@@ -1,27 +1,26 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css';
 import CartContext from '../../context/CartContext';
 
 const ItemDetail = ({ article }) => {
-	const { 
-		titulo, categoria, descripcion, descripcionLarga, 
-		precio, precioLista, stock, imagen, caracteristicas, 
-		galeria, financiacion //, sku 
+	const {
+		titulo, categoria, descripcion, descripcionLarga,
+		precio, precioLista, stock, imagen, caracteristicas,
+		galeria, financiacion
 	} = article;
 
 	const [itemsInCart, setItemsInCart] = useState(0);
 
-	const {addItem} = useContext(CartContext);
+	const { addItem } = useContext(CartContext);
 
 	const addUnits = (units) => {
-		//console.log(`Agregando ${units} unidades al carrito del producto sku=${sku}.`);
 		setItemsInCart(units);
 		addItem(article, units);
 	};
 
-	if(!titulo){
+	if (!titulo) {
 		return (
 			<div className="container m-3 " >
 				<div className="card">
@@ -71,9 +70,9 @@ const ItemDetail = ({ article }) => {
 										<p>$ <strong>{precio}</strong> </p>
 									</h2>
 									{
-										itemsInCart === 0 ? 
-											<ItemCount title={titulo} stock={stock} inicial={1} onAdd={addUnits} /> 
-											: 
+										itemsInCart === 0 ?
+											<ItemCount title={titulo} stock={stock} inicial={1} onAdd={addUnits} />
+											:
 											<Link to="/cart" className="btn btn-primary">Terminar Compra</Link>
 									}
 								</div>

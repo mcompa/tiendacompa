@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, Timestamp, writeBatch } from "firebase/firestore";
-import { collection, getDocs, query, where, getDoc, doc, limit } from 'firebase/firestore';
-import { addDoc } from 'firebase/firestore';
+import {
+	getFirestore, Timestamp, writeBatch, collection,
+	getDocs, query, where, getDoc, doc, limit, addDoc, documentId
+} from "firebase/firestore";
+import { handleError } from '../tools/tools';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_apiKey,
@@ -15,11 +17,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
 const getData = async (coleccion) => {
 	let gDocs = (collection(db, coleccion));
 	let result = await getDocs(gDocs).then((querySnapshot) => {
-		if(querySnapshot.size !== 0){
+		if (querySnapshot.size !== 0) {
 			const objDocs = querySnapshot.docs.map(doc => {
 				return { id: doc.id, ...doc.data() }
 			});
@@ -31,12 +32,12 @@ const getData = async (coleccion) => {
 }
 
 const getDataQ = async (coleccion, w, limite) => {
-	if(!limite){
-		limite=20;
+	if (!limite) {
+		limite = 20;
 	}
-	let gDocs = query(collection(db, coleccion),w,limit(limite));
+	let gDocs = query(collection(db, coleccion), w, limit(limite));
 	let result = await getDocs(gDocs).then((querySnapshot) => {
-		if(querySnapshot.size !== 0){
+		if (querySnapshot.size !== 0) {
 			const objDocs = querySnapshot.docs.map(doc => {
 				return { id: doc.id, ...doc.data() }
 			});
@@ -49,7 +50,7 @@ const getDataQ = async (coleccion, w, limite) => {
 
 const getDataItem = async (coleccion, id) => {
 	let result = await getDoc(doc(db, coleccion, id)).then((querySnapshot) => {
-		if(querySnapshot.size !== 0){
+		if (querySnapshot.size !== 0) {
 			return { id: querySnapshot.id, ...querySnapshot.data() }
 		}
 	})
@@ -58,7 +59,6 @@ const getDataItem = async (coleccion, id) => {
 
 
 export const getProducts = async () => {
-	//return getData('products');
 	return getDataQ('products', where('titulo', '!=', ''));
 }
 
@@ -72,6 +72,18 @@ export const getItem = async (sku) => {
 
 export const getProductsByCat = async (id) => {
 	return getDataQ('products', where('categoriaId', '==', id));
+}
+
+export const getOrder = async (id) => {
+	return getDataItem('orders', id);
+}
+
+export const getOrders = async (arrIds) => {
+	if (Array.isArray(arrIds)) {
+		return getDataQ('orders', where(documentId(), 'in', arrIds));
+	} else {
+		return [];
+	}
 }
 
 export const sendOrder = async (buyer, itemsCart, amountCart) => {
@@ -89,34 +101,32 @@ export const sendOrder = async (buyer, itemsCart, amountCart) => {
 
 	const batch = writeBatch(db);
 	for (const element of order.items) {
-		
-		await getItem(element.sku).then( ({stock}) =>{
-			if (stock >= element.cantidad){
-				batch.update(doc(db,'products', element.sku), {
+
+		await getItem(element.sku).then(({ stock }) => {
+			if (stock >= element.cantidad) {
+				batch.update(doc(db, 'products', element.sku), {
 					stock: stock - element.cantidad
 				});
-			}else{
+			} else {
 				result.outOfStock.push(element.descripcion);
 			}
 		});
-		
+
 	};
-	
-	if(result.outOfStock.length === 0){
-		let updateStockOk = await batch.commit().then(() => { 
+
+	if (result.outOfStock.length === 0) {
+		let updateStockOk = await batch.commit().then(() => {
 			return true;
 		}).catch(err => {
-			console.log('Error procesando stocks',err);
+			handleError('Error procesando stocks', err);
 			return false;
 		});
 
-		result.orderId = await addDoc(collection(db,"orders"), order).then(({id}) => {
+		result.orderId = await addDoc(collection(db, "orders"), order).then(({ id }) => {
 			return (updateStockOk ? id : '');
 		});
 
 		return result;
 	}
-
 	return result;
-
 }

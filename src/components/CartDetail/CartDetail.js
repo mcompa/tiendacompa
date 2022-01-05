@@ -1,21 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CartContext from '../../context/CartContext';
-import Loader from '../Loader/Loader';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-export const Cart = ({itemsCart,viewOnly}) => {
+export const CartDetail = ({ items, viewOnly }) => {
+
 	const { removeItem } = useContext(CartContext);
-	
-    const unitsInCart = () => {
-        return itemsCart.reduce((sum, art) => sum + art.cantidad, 0);
-    };
+	const MySwal = withReactContent(Swal);
 
-    const amountCart = () => {
-        return itemsCart.reduce((sum, art) => sum + (art.cantidad * art.precio), 0);
-    };
+	const unitsInCart = () => {
+		return items.reduce((sum, art) => sum + art.cantidad, 0);
+	};
 
-
-	const [isLoading, setIsLoading] = useState(false);
+	const amountCart = () => {
+		return items.reduce((sum, art) => sum + (art.cantidad * art.precio), 0);
+	};
 
 	const handleRemoveItem = (sku, desc) => {
 		MySwal.fire({
@@ -40,7 +40,7 @@ export const Cart = ({itemsCart,viewOnly}) => {
 
 	return (
 		<div className='m-5'>
-			<table className="table table-hover">
+			<table className="table table-striped">
 				<thead>
 					<tr>
 						<th scope="col"> </th>
@@ -53,7 +53,7 @@ export const Cart = ({itemsCart,viewOnly}) => {
 				</thead>
 				<tbody>
 					{
-						itemsCart.map(prod => {
+						items.map(prod => {
 							return <tr key={prod.sku}>
 								<th scope="row">
 									<img src={prod.imagen} width="50" height="50" alt={prod.titulo} className="img-thumbnail" />
@@ -63,15 +63,15 @@ export const Cart = ({itemsCart,viewOnly}) => {
 								<td valign='middle'>$ {prod.precio}</td>
 								<td valign='middle'>$ {prod.cantidad * prod.precio}</td>
 								<td valign='middle'>
-                                    { 
-                                        !viewOnly &&
-                                    
-                                        <span className="material-icons" style={{ "cursor": "pointer" }}
-                                            title='Quitar este item del carrito'
-                                            onClick={(e) => { e.preventDefault(); handleRemoveItem(prod.sku, prod.descripcion); }}>
-                                            delete_forever
-                                        </span>
-                                    }
+									{
+										!viewOnly &&
+
+										<span className="material-icons" style={{ "cursor": "pointer" }}
+											title='Quitar este item del carrito'
+											onClick={(e) => { e.preventDefault(); handleRemoveItem(prod.sku, prod.descripcion); }}>
+											delete_forever
+										</span>
+									}
 								</td>
 							</tr>
 						})
@@ -80,11 +80,11 @@ export const Cart = ({itemsCart,viewOnly}) => {
 			</table>
 
 			<hr />
+
 			<div className='row'>
 				<div className='col-sm-6 col-lg-2'>Items en el Carrito: {unitsInCart()}</div>
 				<div className='col-sm-6 col-lg-2'><strong>Total: $ {amountCart()}</strong></div>
 			</div>
-			{ isLoading && <Loader /> }
 		</div>
 	);
 };

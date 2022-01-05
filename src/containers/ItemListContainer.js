@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ItemList from '../components/ItemList/ItemList';
-//import { getProducts, getProductsByCat } from '../services/local/local';
 import { getProducts, getProductsByCat } from '../services/firebase/firebase';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
+import { handleError } from '../services/tools/tools';
 
 export const ItemListContainer = ({ greeting }) => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,7 @@ export const ItemListContainer = ({ greeting }) => {
 			getProductsByCat(id).then(response => {
 				setLstArt(response);
 			}).catch(err => {
-				console.log('Error obteniendo productos x Categoria',err);
+				handleError('Error obteniendo productos x Categoria', err);
 			}).finally(() => {
 				setIsLoading(false);
 			});
@@ -24,7 +24,7 @@ export const ItemListContainer = ({ greeting }) => {
 			getProducts().then(response => {
 				setLstArt(response);
 			}).catch(err => {
-				console.log('Error obteniendo productos',err);
+				handleError('Error obteniendo productos', err);
 			}).finally(() => {
 				setIsLoading(false);
 			});
@@ -38,11 +38,11 @@ export const ItemListContainer = ({ greeting }) => {
 			</h4>
 			<div className="container">
 				{
-					
+
 					isLoading ?
-					<Loader /> :
-					<ItemList items={lstArt} />
-					
+						<Loader /> :
+						<ItemList items={lstArt} />
+
 				}
 			</div>
 		</div>

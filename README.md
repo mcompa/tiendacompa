@@ -7,14 +7,13 @@ Este proyecto es creado por Matias Compagnone para el curso de React Js de
 
 ``` Desafio: Entrega Final```
 
-- Agregado manejo de stock al comprar.
-- Agregado componente BuyerData para recolectar datos del comprador.
-- Agregada orden al comprar y mensaje con numero de pedido.
+- Agregada seccion mis ordenes.
+- Agregadas funciones para storage de comprador, carrito y ordenes.
 
 
 ## Creación y Dependencias
 
-- Creacion de la aplicación usando [create-react-app](https://github.com/facebook/create-react-app)\
+- Creacion de la aplicación usando [create-react-app](https://github.com/facebook/create-react-app)
     ```bash
         npx create-react-app nombre-aplicacion
     ```
@@ -29,14 +28,16 @@ Agregadas las siguientes dependencias:
     ```bash
         npm install firebase
     ```
-- [bootstrap](https://getbootstrap.com/) \
-    Se agrega para utilizar el sistema de grid y varios estilos. No es que no se pueda hacer a mano, pero es una 
-    libreria muy conocida y utilizada que simplifica bastante la UI. 
+- [bootstrap](https://getbootstrap.com/) 
+    > Se agrega para utilizar el sistema de grid y varios estilos. No es que no se pueda hacer a mano, pero es una 
+    libreria muy conocida y utilizada que simplifica bastante la UI.
+
     ```bash
         npm install --save bootstrap
     ```
-- [sweetalert2](https://github.com/sweetalert2/sweetalert2-react-content)  \
-    Genera unos dialogos muy convenientes y esteticamente agradables para presentar cierta información.
+- [sweetalert2](https://github.com/sweetalert2/sweetalert2-react-content)  
+    > Genera unos dialogos muy convenientes y esteticamente agradables para presentar cierta información.
+    
     ```bash
         npm install --save sweetalert2 sweetalert2-react-content
     ```
@@ -61,12 +62,61 @@ Existe el archivo .env.example que contiene un ejemplo de como agregar los valor
 
 ## Estructura de los datos
 
-Dentro de la carpeta `services/local` hay un archivo llamado local.js que simula el 
-llamado a una api para obtener los productos y categorias.
+Para el funcionamiento se necesitan dos colecciones en firebase. 
+La primera es `products` que contiene un array de productos con sus caracteristicas, stock, detalles y fotos. \
+La estructura es como la que se muestra a continuacion:
 
-Tambien hay un archivo, en la misma carpeta llamado `products.json` y `categories.json` que
-tienen como ejemplo la estructura esperada, tanto para local como para firebase.
+    ```javascript
+        [
+            {
+                "id": "codigo-de-producto",
+                "sku": "codigo-de-producto",
+                "titulo": "titulo",
+                "descripcion": "descripcion",
+                "descripcionLarga": "descripcionLarga",
+                "stock": 7,
+                "precio": 210901.0,
+                "precioLista": 200807.0,
+                "categoria": "categoria",
+                "categoriaId": "categoriaId",
+                "financiacion": {
+                    "cantidadCuotas": 12,
+                    "importeCuota": 1234,
+                    "intereses": false
+                },
+                "caracteristicas": [
+                    {
+                        "nombre": "nombre de la caracteristica",
+                        "valor": "valor de la caracteristica"
+                    }
+                ],
+                "color": "color",
+                "talle": "talle",
+                "imagen": "url de la imagen principal",
+                "galeria": [
+                    "url de las fotos para la galeria"
+                ]
+            }
+        ]
+    ```
 
+La otra coleccion es `categories` que contendra las opciones de categorias del menu. \
+La estructura es como la que se muestra a continuacion:
+
+    ```javascript
+        [
+            {
+                "id2": "nombre de la categoria pero en formato url-friendly",
+                "nombre": "nombre de la categoria que aparece en el menu"
+            }
+        ]
+    ```
+
+Tambien se utiliza otra coleccion `orders`, pero es creada cuando se genera una orden dentro de la aplicacion.
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ## Scripts 
 

@@ -4,31 +4,28 @@ const BuyerData = ({ buyerValues, editMode, saveBuyer }) => {
 
 	const [formData, setFormData] = useState(buyerValues);
 	const [msgErrorDatos, setMsgErrorDatos] = useState('');
-	
-	
+
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
-		console.log(formData);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		let mensajes = '';
-		
-		if(formData.name.length < 3){
-			mensajes +=' * Tenes que completar un nombre.';
+
+		if (formData.name.length < 3) {
+			mensajes += ' * Tenes que completar un nombre.';
 		}
-		
-		if( (formData.mail !== formData.remail) || formData.mail.length < 10){
+
+		if ((formData.mail !== formData.remail) || formData.mail.length < 10) {
 			mensajes += ' * El mail debe ser ingresado correctamente ambas veces.';
 		}
 
-		if(mensajes.length > 0){
+		if (mensajes.length > 0) {
 			setMsgErrorDatos(mensajes);
-		}else{
+		} else {
 			saveBuyer(formData);
 		}
-
 	};
 
 	return (
@@ -46,8 +43,8 @@ const BuyerData = ({ buyerValues, editMode, saveBuyer }) => {
 				<input type="email" className="form-control" disabled={!editMode} name='mail' value={formData.mail} onChange={handleChange} id="mail" maxLength="150" placeholder="jperez@gmail.com" />
 			</div>
 			{
-				editMode && 
-			
+				editMode &&
+
 				<div className="col-md-6 col-sm-12">
 					<label className="form-label" htmlFor="remail">Reingresar Email</label>
 					<input type="email" className="form-control" name='remail' onChange={handleChange} id="remail" maxLength="150" placeholder="jperez@gmail.com" />
@@ -65,12 +62,12 @@ const BuyerData = ({ buyerValues, editMode, saveBuyer }) => {
 				<label className="form-label" htmlFor="comments">Comentarios</label>
 				<input type="text" className="form-control" disabled={!editMode} name='comments' value={formData.comments} onChange={handleChange} id="comments" maxLength="500" placeholder="..." />
 			</div>
-			{ editMode && 
+			{editMode &&
 				<div className="col-12">
 					<button type="submit" className="btn btn-primary" onClick={handleSubmit}>Guardar</button>
 					<span className='m-3 text-danger'>{msgErrorDatos}</span>
 				</div>
-				
+
 			}
 		</form>
 	)
