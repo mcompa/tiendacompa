@@ -51,8 +51,7 @@ export const Cart = () => {
 				MySwal.fire({
 					title: 'La compra esta siendo procesada',
 					html: <div>
-							Podrás hacer el seguimiento de tu orden desde la seccion 
-							<em>Mis Compras</em>
+							Podrás hacer el seguimiento de tu orden desde la seccion <em>Mis Compras</em>
 							<br />
 							Tu número de pedido es el <strong>{orderResult.orderId}</strong>
 						</div>,

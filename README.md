@@ -3,6 +3,9 @@
 Este proyecto es creado por Matias Compagnone para el curso de React Js de
  [CODERHOUSE](https://www.coderhouse.com/) Comision 16995.
 
+# Url Publica
+ Proyecto publicado en firebase hosting: [TiendaCompa App](https://app-tiendacompa.web.app)
+
 ## Entrega
 
 ``` Desafio: Entrega Final```
@@ -153,7 +156,7 @@ Click en [React documentation](https://reactjs.org/) para ir a la documentacion 
 
 ## Badges
 
-![version](https://img.shields.io/static/v1?label=Version&message=0.1.14&color=green)
+![version](https://img.shields.io/static/v1?label=Version&message=1.0.0&color=green)
 
 ![ultimo commit](https://img.shields.io/github/last-commit/mcompa/tiendacompa)
 
