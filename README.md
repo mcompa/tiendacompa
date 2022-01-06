@@ -114,6 +114,24 @@ La estructura es como la que se muestra a continuacion:
             }
         ]
     ```
+JSON
+----
+
+```json
+{
+    "one": 2,
+    "three": {
+        "point_1": "point_2",
+        "point_3": 3.4
+    },
+    "list": [
+        "one",
+        "two",
+        "three"
+    ]
+}
+```    
+    
 
 Tambien se utiliza otra coleccion `orders`, pero es creada cuando se genera una orden dentro de la aplicacion.
 
