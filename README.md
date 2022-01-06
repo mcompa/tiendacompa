@@ -3,7 +3,7 @@
 Este proyecto es creado por Matias Compagnone para el curso de React Js de
  [CODERHOUSE](https://www.coderhouse.com/) Comision 16995.
 
-# Url Publica
+## Url Publica
  Proyecto publicado en firebase hosting: [TiendaCompa App](https://app-tiendacompa.web.app)
 
 ## Entrega
@@ -69,57 +69,61 @@ Para el funcionamiento se necesitan dos colecciones en firebase.
 La primera es `products` que contiene un array de productos con sus caracteristicas, stock, detalles y fotos. \
 La estructura es como la que se muestra a continuacion:
 
-    ```json
-        [
+products
+----------
+```json
+[
+    {
+        "id": "codigo-de-producto",
+        "sku": "codigo-de-producto",
+        "titulo": "titulo",
+        "descripcion": "descripcion",
+        "descripcionLarga": "descripcionLarga",
+        "stock": 7,
+        "precio": 210901.0,
+        "precioLista": 200807.0,
+        "categoria": "categoria",
+        "categoriaId": "categoriaId",
+        "financiacion": {
+            "cantidadCuotas": 12,
+            "importeCuota": 1234,
+            "intereses": false
+        },
+        "caracteristicas": [
             {
-                "id": "codigo-de-producto",
-                "sku": "codigo-de-producto",
-                "titulo": "titulo",
-                "descripcion": "descripcion",
-                "descripcionLarga": "descripcionLarga",
-                "stock": 7,
-                "precio": 210901.0,
-                "precioLista": 200807.0,
-                "categoria": "categoria",
-                "categoriaId": "categoriaId",
-                "financiacion": {
-                    "cantidadCuotas": 12,
-                    "importeCuota": 1234,
-                    "intereses": false
-                },
-                "caracteristicas": [
-                    {
-                        "nombre": "nombre de la caracteristica",
-                        "valor": "valor de la caracteristica"
-                    }
-                ],
-                "color": "color",
-                "talle": "talle",
-                "imagen": "url de la imagen principal",
-                "galeria": [
-                    "url de las fotos para la galeria"
-                ]
+                "nombre": "nombre de la caracteristica",
+                "valor": "valor de la caracteristica"
             }
+        ],
+        "color": "color",
+        "talle": "talle",
+        "imagen": "url de la imagen principal",
+        "galeria": [
+            "url de las fotos para la galeria"
         ]
-    ```
+    }
+]
+``` 
 
 La otra coleccion es `categories` que contendra las opciones de categorias del menu. \
 La estructura es como la que se muestra a continuacion:
 
-    ```json
-        [
-            {
-                "id2": "nombre de la categoria pero en formato url-friendly",
-                "nombre": "nombre de la categoria que aparece en el menu"
-            }
-        ]
-    ```
+categories
+----------
+```json
+[
+    {
+        "id2": "nombre de la categoria pero en formato url-friendly",
+        "nombre": "nombre de la categoria que aparece en el menu"
+    }
+]
+```    
 
 Tambien se utiliza otra coleccion `orders`, pero es creada cuando se genera una orden dentro de la aplicacion.
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://x-it.com.ar/tiendacompa.gif)
 
 ## Scripts 
 

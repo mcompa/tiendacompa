@@ -79,7 +79,7 @@ export const getOrder = async (id) => {
 }
 
 export const getOrders = async (arrIds) => {
-	if (Array.isArray(arrIds)) {
+	if (Array.isArray(arrIds) && arrIds.length > 0) {
 		return getDataQ('orders', where(documentId(), 'in', arrIds));
 	} else {
 		return [];
